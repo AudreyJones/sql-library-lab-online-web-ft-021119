@@ -37,7 +37,7 @@ ON series.subgenre_id = subgenres.id;
 #   LEFT JOIN series
 #   ON authors.id = series.author_id
 #   LEFT JOIN subgenres
-#   ON series.id = series.subgenre_id
+#   ON subgenres.id = series.subgenre_id
 #   GROUP BY(authors.name);
 
 end
