@@ -25,15 +25,10 @@ def select_value_and_count_of_most_prolific_species
 end
 
 def select_name_and_series_subgenres_of_authors #Fake a FULL OUTER JOIN?
-  "SELECT authors.name, subgenre.name
+  "SELECT authors.name, series.title
   FROM authors
   LEFT JOIN series
   ON authors.id = series.author_id
-  UNION ALL
-  SELECT authors.name, subgenre.name
-  FROM subgenres
-  LEFT JOIN series
-  ON subgenres.id = series.subgenre_id
   GROUP BY(authors.name)"
 end
 
