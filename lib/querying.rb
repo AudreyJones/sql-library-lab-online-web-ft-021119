@@ -31,7 +31,7 @@ def select_name_and_series_subgenres_of_authors #Fake a FULL OUTER JOIN?
   ON authors.id = series.author_id
   LEFT JOIN subgenres
   ON series.id = series.subgenre_id
-  GROUP BY(authors.name)"
+  GROUP BY(authors.name"
 end
 
 def select_series_title_with_most_human_characters
