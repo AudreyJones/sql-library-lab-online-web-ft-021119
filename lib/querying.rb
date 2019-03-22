@@ -27,9 +27,9 @@ end
 def select_name_and_series_subgenres_of_authors #Fake a FULL OUTER JOIN?
   "SELECT authors.name, subgenres.name
   FROM authors
-  LEFT JOIN series
+  INNER JOIN series
   ON authors.id = series.author_id
-  LEFT JOIN subgenres
+  INNER JOIN subgenres
   ON series.id = series.subgenre_id
   GROUP BY(authors.name)"
 end
