@@ -48,11 +48,7 @@ end
 def select_character_names_and_number_of_books_they_are_in #use character_books join table!
   "SELECT characters.name, COUNT(books.id)
   FROM characters
-  LEFT JOIN character_books
-  ON characters.id = series.character_id
-  UNION ALL
-  SELECT characters.name, COUNT(books.id)
-  FROM character_books
-  LEFT JOIN books
-  ON books.id = character_books.book_id"
+  INNER JOIN character_books
+  ON character_books.character_id = characters_id
+  "
 end
