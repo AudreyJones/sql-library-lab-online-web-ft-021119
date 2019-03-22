@@ -25,16 +25,14 @@ def select_value_and_count_of_most_prolific_species
 end
 
 def select_name_and_series_subgenres_of_authors #Fake a FULL OUTER JOIN?
-  "SELECT authors.name, subgenre.name
+"SELECT authors.name, subgenres.name
   FROM authors
   LEFT JOIN series
   ON authors.id = series.author_id
-  UNION ALL
-  SELECT authors.name, subgenre.name
-  FROM subgenres
-  LEFT JOIN series
+  LEFT JOIN subgenres
   ON subgenres.id = series.subgenre_id
   GROUP BY(authors.name)"
+
 end
 
 def select_series_title_with_most_human_characters
@@ -48,13 +46,13 @@ def select_series_title_with_most_human_characters
 end
 
 def select_character_names_and_number_of_books_they_are_in #use character_books join table!
-  "SELECT characters.name, COUNT(books.id)
+  "SELECT characters.name, COUNT(character_books.character_id)
   FROM characters
-  LEFT JOIN character_books
-  ON characters.id = series.character_id
-  UNION ALL
-  SELECT characters.name, COUNT(books.id)
-  FROM character_books
-  LEFT JOIN books
-  ON books.id = character_books.book_id"
+  INNER JOIN character_books
+  ON character_books.character_id = characters.id
+  INNER JOIN books
+  ON books.id = character_books.book_id
+  GROUP BY characters.name
+  ORDER BY COUNT(character_books.character_id) DESC
+  "
 end
